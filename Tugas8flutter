@@ -1,0 +1,146 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_thania/TUGAS/tugas7flutter.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Tugas 8 Flutter',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.blue),
+      home: const Tugas8Flutter(),
+    );
+  }
+}
+
+class Tugas8Flutter extends StatefulWidget {
+  const Tugas8Flutter({super.key});
+
+  @override
+  State<Tugas8Flutter> createState() => _Tugas8FlutterState();
+}
+
+class _Tugas8FlutterState extends State<Tugas8Flutter> {
+  int _currentIndex = 0;
+
+  final List<Widget> _pages = [const InputPage(), const AboutPage()];
+
+  String get _appBarTitle {
+    return _currentIndex == 0 ? 'Home' : 'Tentang Aplikasi';
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(_appBarTitle), elevation: 2),
+
+      drawer: _currentIndex == 0 ? const Drawer() : null,
+
+      body: _pages[_currentIndex],
+
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: _onItemTapped,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
+          BottomNavigationBarItem(icon: Icon(Icons.info), label: 'Tentang'),
+        ],
+      ),
+    );
+  }
+}
+
+class AboutPage extends StatelessWidget {
+  const AboutPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.all(24.0),
+      child: Column(
+        children: [
+          const SizedBox(height: 20),
+          const CircleAvatar(
+            radius: 48,
+            backgroundColor: Colors.blue,
+            child: Icon(Icons.info, size: 48, color: Colors.white),
+          ),
+          const SizedBox(height: 16),
+          Text(
+            'Aplikasi Cantelan',
+            style: Theme.of(
+              context,
+            ).textTheme.headlineSmall?.copyWith(fontWeight: FontWeight.bold),
+            textAlign: TextAlign.center,
+          ),
+          const SizedBox(height: 8),
+          Chip(
+            label: const Text('Versi 1.0.0'),
+            backgroundColor: Colors.blue.shade50,
+          ),
+          const SizedBox(height: 20),
+          Card(
+            elevation: 3,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(16),
+            ),
+            child: const Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Deskripsi Aplikasi',
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+                  SizedBox(height: 8),
+                  Text(
+                    'Aplikasi ini',
+                    style: TextStyle(color: Colors.black, height: 1.4),
+                  ),
+                  Divider(height: 28),
+                  Row(
+                    children: [
+                      Icon(Icons.person, color: Colors.blue),
+                      SizedBox(width: 12),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Pembuat Aplikasi',
+                            style: TextStyle(fontSize: 12, color: Colors.grey),
+                          ),
+                          Text(
+                            'Thania',
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
