@@ -1,0 +1,45 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_thania/Day_13/drawer.dart';
+import 'package:flutter_thania/Day_13/input_detail.dart';
+
+class BottomNav extends StatefulWidget {
+  const BottomNav({super.key});
+
+  @override
+  State<BottomNav> createState() => _BottomNavState();
+}
+
+class _BottomNavState extends State<BottomNav> {
+  int _selectedIndex = 0;
+
+  static const List<Widget> _widgetOptions = [
+    DrawerTugas7(),
+    InputDetailTugas7(section: 'terms'),
+    InputDetailTugas7(section: 'terms'),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _widgetOptions[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Drawer'),
+          BottomNavigationBarItem(icon: Icon(Icons.input), label: 'Input'),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.open_in_new),
+            label: 'Detail',
+          ),
+        ],
+      ),
+    );
+  }
+}
