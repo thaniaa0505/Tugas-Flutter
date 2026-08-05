@@ -1,0 +1,84 @@
+import 'package:flutter/material.dart';
+
+class ListDataThania extends StatelessWidget {
+  const ListDataThania({super.key});
+
+  List<Map<String, dynamic>> get kategoriModel => [
+    {
+      'nama': 'Phone Holder',
+      'gambar': 'assets/image/gambar1thania.webp',
+      'deskripsi': 'Dudukan ponsel agar mudah digunakan saat berkendara.',
+    },
+    {
+      'nama': 'Dashcam',
+      'gambar': 'assets/image/gambar2thania.jpg',
+      'deskripsi': 'Kamera untuk merekam perjalanan dan meningkatkan keamanan.',
+    },
+    {
+      'nama': 'Karpet Mobil',
+      'gambar': 'assets/image/gambar3thania.jpg',
+      'deskripsi': 'Melindungi lantai mobil dari debu dan kotoran.',
+    },
+    {
+      'nama': 'Cover Jok',
+      'gambar': 'assets/image/gambar4thania.jpg',
+      'deskripsi': 'Melindungi jok serta membuat interior lebih menarik.',
+    },
+    {
+      'nama': 'Tempat Sampah Mini',
+      'gambar': 'assets/image/gambar5thania.jpg',
+      'deskripsi': 'Menjaga kebersihan kabin mobil dari sampah kecil.',
+    },
+    {
+      'nama': 'Vacuum Cleaner Mobil',
+      'gambar': 'assets/image/gambar6thania.jpg',
+      'deskripsi': 'Alat pembersih debu dan kotoran di dalam mobil.',
+    },
+    {
+      'nama': 'Pengharum Mobil',
+      'gambar': 'assets/image/gambar7thania.jpg',
+      'deskripsi': 'Memberikan aroma segar agar kabin lebih nyaman.',
+    },
+    {
+      'nama': 'Sunshade',
+      'gambar': 'assets/image/gambar8thania.jpg',
+      'deskripsi': 'Pelindung kaca depan untuk mengurangi panas matahari.',
+    },
+    {
+      'nama': 'Charger Mobil USB',
+      'gambar': 'assets/image/gambar9thania.jpg',
+      'deskripsi': 'Mengisi daya perangkat elektronik saat perjalanan.',
+    },
+    {
+      'nama': 'Organizer Mobil',
+      'gambar': 'assets/image/gambar10thania.jpg',
+      'deskripsi': 'Tempat penyimpanan agar barang di mobil tetap rapi.',
+    },
+  ];
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView.separated(
+        separatorBuilder: (context, index) {
+          return SizedBox(height: 8);
+        },
+        itemCount: kategoriModel.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+            tileColor: index % 2 == 0 ? Colors.red[200] : Colors.grey[200],
+            title: Text(kategoriModel[index]["nama"]),
+            subtitle: Text(kategoriModel[index]["deskripsi"]),
+            trailing: SizedBox(
+              width: 56,
+              height: 56,
+              child: Image.asset(
+                kategoriModel[index]["gambar"],
+                fit: BoxFit.cover,
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
