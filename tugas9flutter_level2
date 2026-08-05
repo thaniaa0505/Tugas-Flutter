@@ -1,0 +1,35 @@
+import 'package:flutter/material.dart';
+
+class ListData2 extends StatelessWidget {
+  ListData2({super.key});
+
+  List<Map<String, dynamic>> dataProduk = [
+    {"nama": "Phone Holder", "icon": Icons.phone_android},
+    {"nama": "Dashcam", "icon": Icons.videocam},
+    {"nama": "Karpet Mobil", "icon": Icons.car_rental},
+    {"nama": "Cover Jok", "icon": Icons.chair},
+    {"nama": "Tempat Sampah Mini", "icon": Icons.delete},
+    {"nama": "Vacuum Cleaner Mobil", "icon": Icons.cleaning_services},
+    {"nama": "Sunshade", "icon": Icons.wb_sunny},
+    {"nama": "Charger Mobil USB", "icon": Icons.battery_charging_full},
+    {"nama": "Organizer Mobil", "icon": Icons.inventory_2},
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView.separated(
+        itemCount: dataProduk.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            leading: Icon(dataProduk[index]["icon"]),
+            title: Text(dataProduk[index]["nama"]),
+          );
+        },
+        separatorBuilder: (context, index) {
+          return const Divider();
+        },
+      ),
+    );
+  }
+}
