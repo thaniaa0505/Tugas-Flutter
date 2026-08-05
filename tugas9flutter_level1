@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+
+// ignore: must_be_immutable
+class ListData1 extends StatelessWidget {
+  ListData1({super.key});
+
+  List<String> aksesorisMobil = const [
+    'Phone holder',
+    'Dashcam',
+    'Karpet mobil',
+    'Cover jok',
+    'Tempat sampah mini',
+    'Vacuum cleaner mobil',
+    'Pengharum mobil',
+    'Sunshade',
+    'Charger mobil USB',
+    'Organizer mobil',
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: ListView.builder(
+        itemCount: aksesorisMobil.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(title: Text(aksesorisMobil[index]));
+        },
+      ),
+    );
+  }
+}
